@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Elements } from 'react-stripe-elements'
 import Payment from '../../components/Payment/Payment'
 import { Container,Col, Row, Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap'
+import './checkoutContainer.css'
 
 class CheckoutContainer extends Component {
 
@@ -22,32 +23,30 @@ class CheckoutContainer extends Component {
         <Link className="text-light" to="/">
               <h6>Back to store</h6>
           </Link>
-          <NavbarBrand href="/">ggggg</NavbarBrand>
 
         </Navbar>
-        <Container fluid className="">
-          <h6 className="text-primary">Basket:</h6>
-        {
-          Object.keys(basket).map((item, index) => {
-            return (
-              <Row key={index} >
-              <Col xs="5" md="4" className="text-left">{ basket[item].title }</Col>
-              <Col xs="3" md="4" className="text-center"> {`${ basket[item].quantity }x`} </Col>
-              <Col xs="4" md="4" className="text-right">{` £${ basket[item].price }`} </Col>
-            </Row>
-            )
-          })
-        }
-        <div className="lead text-right"><hr/>Total: <span className="lead text-primary">£{ this.basketTotal(basket)}</span><hr/></div>
-        <section>
-          <Elements>
-              <Payment
-                subTotal={ this.basketTotal(basket) }
-              />
-          </Elements>
-        </section>
-      </Container>
-
+        <Container className="checkoutContainer">
+          <h6 className="text-primary">BASKET</h6>
+          {
+            Object.keys(basket).map((item, index) => {
+              return (
+                <Row key={index} >
+                <Col xs="5" md="4" className="text-left">{ basket[item].title }</Col>
+                <Col xs="3" md="4" className="text-center"> {`${ basket[item].quantity }x`} </Col>
+                <Col xs="4" md="4" className="text-right">{` £${ basket[item].price }`} </Col>
+              </Row>
+              )
+            })
+          }
+          <div className="lead text-right"><hr/>Total: <span className="lead text-primary">£{ this.basketTotal(basket)}</span><hr/></div>
+          <section>
+            <Elements>
+                <Payment
+                  subTotal={ this.basketTotal(basket) }
+                />
+            </Elements>
+          </section>
+        </Container>
       </div>
     )
   }

@@ -6,8 +6,8 @@ const app = express()
 var accountSid = process.env.ACCOUNT_SID
 var authToken = process.env.AUTH_TOKEN
 
-var twilio = require('twilio')
-var client = new twilio(accountSid, authToken)
+// var twilio = require('twilio')
+// var client = new twilio(accountSid, authToken)
 
 const bodyParser = require('body-parser')
 const port = process.env.SERVER_PORT
@@ -42,16 +42,6 @@ app.post(`${process.env.BASE_URL}/charge`, (req, res) => {
     res.status(500).send({error: "Purchase Failed"})
   })
 
-})
-
-app.get('/sms', (req, res) => {
-  client.messages.create({
-    body: '#Order Confirmation',
-    to: process.env.TO_NUMBER,
-    from: process.env.FROM_NUMBER
-  })
-    .then((message) => console.log(message.sid))
-    .catch(err => console.log(err))
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
