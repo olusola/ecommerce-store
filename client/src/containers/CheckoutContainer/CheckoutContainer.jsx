@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Elements } from 'react-stripe-elements'
 import Payment from '../../components/Payment/Payment'
-import { Container,Col, Row, Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap'
+import { Container,Col, Row, Navbar } from 'reactstrap'
 import './checkoutContainer.css'
 
 class CheckoutContainer extends Component {
@@ -21,7 +21,7 @@ class CheckoutContainer extends Component {
       <div>
         <Navbar color="primary" fixed="top">
         <Link className="text-light" to="/">
-              <h6>Back to store</h6>
+              <h6>BACK</h6>
           </Link>
 
         </Navbar>

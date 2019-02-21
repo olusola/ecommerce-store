@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 
 class DriverContainer extends Component {
-  constructor(){
-    super()
-  }
+
   render(){
     return (
       <section style={section}>

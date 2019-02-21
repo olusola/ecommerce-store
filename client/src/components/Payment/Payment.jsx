@@ -58,7 +58,6 @@ class Payment extends Component {
           <CardForm/>
           <Button className="my-3" color="dark" block>Pay Now</Button>
         </form>
-        <small className="text-muted">4000008260000000</small>
         </Jumbotron>
         
       </div>

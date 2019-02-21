@@ -7,7 +7,6 @@ import { StripeProvider } from 'react-stripe-elements'
 import App from './containers/App'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './style/index.css'
-import AppSync from '../src/Config/AppSync'
 import AWSAppSyncClient from 'aws-appsync'
 import { Rehydrated } from 'aws-appsync-react'
 import { AUTH_TYPE } from 'aws-appsync/lib/link/auth-link'
@@ -17,20 +16,20 @@ import masterReducer from '../src/redux/reducers/master'
 const store = createStore(masterReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 const client = new AWSAppSyncClient({
-  url: AppSync.graphqlEndpoint,
-  region: AppSync.region,
+  url: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+  region: process.env.REACT_APP_GRAPHQL_REGION,
   auth: {
     type: AUTH_TYPE.API_KEY,
-    apiKey: AppSync.apiKey
+    apiKey: process.env.REACT_APP_APPSYNC_APIKEY
   }
 })
 
 const WithProvider = () => (
   <ApolloProvider client={client}>
     <Rehydrated>
-      <Provider store={store}r>
+      <Provider store={store}>
         <BrowserRouter>
-          <StripeProvider apiKey="pk_test_mvOM0bUdTZ8FxFm70Cw3oSGI">
+          <StripeProvider apiKey={process.env.REACT_APP_KEY_PUBLISHABLE}>
             <App />
           </StripeProvider>
         </BrowserRouter>
