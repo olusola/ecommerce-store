@@ -6,7 +6,7 @@ import '../style/App.css'
 import { addToBasket, resetBasket } from '../redux/actions/master'
 import NavBar from  '../components/NavBar/NavBar'
 import ProductList from '../components/ProductList/ProductList'
-import ProductLists from '../Queries/ProductList'
+import { ListProducts, dummy } from '../Queries/ProductList'
 
 class AppContainer extends Component {
 
@@ -22,8 +22,13 @@ class AppContainer extends Component {
   return subTotal
   }
 
+  componentDidMount() {
+    const { AllProducts, checkout: { basket } } = this.props
+  }
+
   render() {
     const { AllProducts, checkout: { basket } } = this.props
+    // console.log(AllProducts)
 
     return (
       <div className="appContainer">
@@ -47,12 +52,15 @@ const mapStateToProps = (state) => (
   }
 )
 
-const masterqL = graphql(ProductLists, {
+const masterqL = graphql(ListProducts, {
   options: {
-    fetchPolicy: "network only"
+    fetchPolicy: "network-only"
   },
+  // props: props => ({
+  //   AllProducts: props.data.listPosts ? props.data.listPosts.items : []
+  // })
   props: props => ({
-    AllProducts: props.data.listProductLists ? props.data.listProductLists.items : []
+    AllProducts: props.data.listProducts ? props.data.listProducts.items : []
   })
 })
 

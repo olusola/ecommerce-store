@@ -19,4 +19,3 @@ export const resetBasket = () => {
     type: RESET_BASKET
   }
 }
-
